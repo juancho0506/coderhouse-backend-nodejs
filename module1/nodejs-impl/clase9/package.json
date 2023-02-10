@@ -1,0 +1,16 @@
+{
+  "name": "plantillas-express-handlebars",
+  "version": "1.0.0",
+  "description": "Clase 9: Motores de plantillas usando handlebars con express.",
+  "main": "Clase9.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juan Torres",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.7"
+  }
+}
