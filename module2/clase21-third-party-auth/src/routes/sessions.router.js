@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import passport from 'passport';
+import { generateJWToken } from '../utils.js';
 
 const router = Router();
 
@@ -20,10 +21,13 @@ router.post("/register", passport.authenticate(
     'register', {failureRedirect: '/api/sessions/fail-register'})
     , async (req, res)=>{
     console.log("Registrando nuevo usuario.");
+
     res.status(201).send({status: "success", message: "Usuario creado con extito."});
 });
 
-router.post("/login", passport.authenticate('login', {failureRedirect: '/api/sessions/fail-login'}), async (req, res)=>{
+router.post("/login", passport.authenticate(
+    'login', {failureRedirect: '/api/sessions/fail-login'})
+    , async (req, res)=>{
     console.log("User found to login:");
     const user = req.user;
     console.log(user);
@@ -34,7 +38,9 @@ router.post("/login", passport.authenticate('login', {failureRedirect: '/api/ses
         age: user.age
     };
     req.session.admin = true;
-    res.send({status:"success", payload:req.session.user, message:"¡Primer logueo realizado! :)" });
+    const access_token = generateJWToken(user);
+    console.log(access_token);
+    res.send({access_token: access_token});
 });
 
 router.get("/fail-register", (req, res) => {

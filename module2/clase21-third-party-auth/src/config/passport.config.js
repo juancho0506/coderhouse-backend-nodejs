@@ -2,6 +2,7 @@ import passport from 'passport';
 import passportLocal from 'passport-local';
 import GitHubStrategy from 'passport-github2';
 import userModel from '../models/user.model.js';
+import {createHash, isValidPassword} from '../utils.js';
 
 //Declaramos nuestra estrategia:
 const localStrategy = passportLocal.Strategy;
@@ -31,7 +32,8 @@ const initializePassport = () => {
                         last_name: '',
                         age: 18,
                         email: profile._json.email,
-                        passport: '',
+                        password: '',
+                        loggedBy: "GitHub"
                     };
                     const result = await userModel.create(newUser);
                     return done(null, result);
@@ -59,7 +61,8 @@ const initializePassport = () => {
                     last_name,
                     email,
                     age,
-                    password : createHash(password)
+                    password : createHash(password),
+                    loggedBy: "App"
                 };
                 const result = await userModel.create(user);
                 //Todo sale OK

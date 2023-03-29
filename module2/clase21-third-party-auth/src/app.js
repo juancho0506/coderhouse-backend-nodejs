@@ -41,7 +41,7 @@ app.use(session({
 //Middlewares Passport
 initializePassport();
 app.use(passport.initialize());
-//app.use(passport.session()); //?
+//app.use(passport.session());
 
 //Declare routers:
 app.use("/",viewsRouter);
