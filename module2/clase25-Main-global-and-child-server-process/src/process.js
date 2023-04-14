@@ -1,0 +1,34 @@
+import {Command} from 'commander';
+
+const program = new Command(); //Crea la instancia de comandos de commander.
+
+program
+    .option('-d', 'Variable para debug', false) //primero va la variable, luego la descripcion 
+                                                //y al final puede ir un valor por defecto.
+    .option('-p <port>', 'Puerto del servidor', 9090) //donde indicamos que <port> es el valor del puerto a asignar.
+    .option('--mode <mode>', 'Modo de trabajo', 'develop')
+    //Require Option usa un mensaje por defecto si no está presente la opción.
+    .requiredOption('-u <user>', 'Usuario que va a utilizar el aplicativo.', 'No se ha declarado un usuario.');
+
+program.parse(); //Parsea los comandos y valida si son correctos.
+
+console.log("Options: ", program.opts());
+console.log("Mode Option: ", program.opts().mode);
+console.log("Remaining arguments: ", program.args);
+
+process.on("exit", code => {
+    console.log("Este codigo se ejecuta antes de salir del proceso.");
+    console.log("Codigo de salida del proceso: " + code);
+});
+
+process.on("uncaughtException", exception => {
+    console.log("Esta exception no fue capturada, o controlada.");
+    console.log(`Exception no capturada: ${exception}`)
+});
+
+process.on("message", message => {
+    console.log("Este codigo se ejecutará cuando reciba un mensaje de otro proceso.");
+    console.log(`Mensaje recibido: ${message}`);
+});
+
+export default program;
