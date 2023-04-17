@@ -16,6 +16,10 @@ export default class UsersExtendRouter extends CustomRouter {
             res.sendSuccess(req.user);
         });
 
+        this.get("/premiumUser" , ["USER_PREMIUM"], (req, res) => {
+            res.sendSuccess(req.user);
+        });
+
         this.post("/login", ['PUBLIC'], async(req, res) => {
             const {email, password} = req.body;
             try {
