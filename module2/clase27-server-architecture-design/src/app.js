@@ -1,5 +1,4 @@
 import express from 'express';
-import handlebars from 'express-handlebars';
 import __dirname from './utils.js';
 import config from './config/config.js';
 import MongoSingleton from './config/mongodb-singleton.js';
