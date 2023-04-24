@@ -2,6 +2,7 @@ import express from 'express';
 import __dirname from './utils.js';
 import config from './config/config.js';
 import MongoSingleton from './config/mongodb-singleton.js';
+import cors from 'cors';
 
 //Passport imports
 
@@ -12,11 +13,11 @@ const app = express();
 //JSON settings:
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-
+app.use(cors());
 
 //Declare routers:
 app.get('/test', (req, res) => {
-    res.send("Success!!");
+    res.send({message: "success", payload: "Success!!"});
 });
 
 const SERVER_PORT = config.port;
@@ -34,4 +35,4 @@ const mongoInstance = async () => {
     }
 };
 mongoInstance();
-//mongoInstance();
+mongoInstance();
