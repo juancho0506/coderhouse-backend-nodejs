@@ -1,30 +1,24 @@
 import express from 'express';
 import __dirname from './utils.js';
 import config from './config/config.js';
-import mongoose from 'mongoose';
+import MongoSingleton from './config/mongodb-singleton.js';
+import cors from 'cors';
 
 //Passport imports
 
 //Routers
-//import viewsRouter from './routes/views.router.js';
-//import usersViewRouter from './routes/users.views.router.js';
-//Custom - Extended
-
 
 const app = express();
 
 //JSON settings:
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-
-//app.engine('handlebars',handlebars.engine());
-//app.set('views',__dirname+'/views')
-//app.set('view engine','handlebars');
-app.use(express.static(__dirname+'/public'));
+app.use(cors());
 
 //Declare routers:
-//app.use("/",viewsRouter);
-//app.use("/users", usersViewRouter);
+app.get('/test', (req, res) => {
+    res.send({message: "success", payload: "Success!!"});
+});
 
 const SERVER_PORT = config.port;
 app.listen(SERVER_PORT, () => {
@@ -33,13 +27,12 @@ app.listen(SERVER_PORT, () => {
     //console.log(config);
 });
 
-const connectMongoDB = async ()=>{
+const mongoInstance = async () => {
     try {
-        await mongoose.connect(config.mongoUrl);
-        console.log("Conectado con exito a MongoDB usando Moongose.");
+        await MongoSingleton.getInstance();
     } catch (error) {
-        console.error("No se pudo conectar a la BD usando Moongose: " + error);
-        process.exit();
+        console.error(error);
     }
 };
-connectMongoDB();
+mongoInstance();
+mongoInstance();
