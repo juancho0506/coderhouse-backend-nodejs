@@ -4,12 +4,13 @@ const userService = new UserService();
 
 export const getUsers = async (req, res) => {
     try {
-        let users = await userService.getAll();
-        res.send(users);
+        const users = await userService.getAll();
+        res.send({message: "Success!", payload: users});
     } catch (error) {
         console.error(error);
         res.status(500).send({error:  error, message: "No se pudo obtener los usuarios."});
     }
+    
 }
 
 export const getUserById = async (req, res) => {
