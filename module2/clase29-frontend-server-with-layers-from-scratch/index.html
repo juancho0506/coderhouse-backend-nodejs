@@ -7,16 +7,22 @@
     <title>Test CORS</title>
 </head>
     <body>
-        <button onclick="testRequest()">Test CORS</button>
+        <button onclick="testRequest()">Render Fetch Request</button>
         <div id="content"></div>
         <!-- Include Handlebars from a CDN -->
         <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
         <script id="usersTemplate" type="text/x-handlebars-template">
             <div>
-                <h1>Tu perfil (sin datos sensibles)</h1>
-                <p>{{user.name}}</p>
-                <p>{{user.email}}</p>
-                <p>{{user.role}}</p>
+                <h1>Usuarios en el Sistema (sin datos sensibles)</h1>
+                <ul>
+                    {{#each this}}
+                    <li>
+                        <p>{{name}}</p>
+                        <p>{{email}}</p>
+                        <p>{{role}}</p>
+                    </li>
+                    {{/each}}
+                </ul>
             </div>
         </script>
         <script src="index.js"></script>
