@@ -26,3 +26,14 @@ export const saveBusiness = async (req, res) => {
         res.status(500).send({error: error});
     }
 }
+
+export const getBusinessesByCategory = async (req, res) => {
+    try {
+        const category = req.param.category;
+        const result = await businessService.getBusinessesByCategory(category);
+        res.status(200).send({message: "Success!", payload: result});
+    } catch (error) {
+        console.error("Hubo un problema creando el business.");
+        res.status(500).send({error: error});
+    }
+}

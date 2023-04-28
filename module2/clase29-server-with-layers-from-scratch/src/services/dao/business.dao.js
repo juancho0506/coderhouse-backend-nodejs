@@ -19,4 +19,9 @@ export default class BusinessService {
         const result = await businessModel.findOne({_id: id});
         return result;
     }
+
+    getBusinessesByCategory = async (category) => {
+        const result = await businessModel.find({category: category});
+        return result;
+    }
 };

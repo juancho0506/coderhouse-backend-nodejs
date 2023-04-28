@@ -5,6 +5,7 @@ const schema = new moongose.Schema({
         type: String,
         unique: true
     },
+    category: String,
     products: []
 });
 
