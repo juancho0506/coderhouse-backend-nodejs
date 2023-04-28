@@ -7,6 +7,10 @@ export default class BusinessService {
         return businesses.map(business=>business.toObject());
     }
     save = async (business) => {
+        const actualBusiness = await businessModel.find({name: business.name});
+        if (actualBusiness) {
+            throw new Error("El negocio ya existe");
+        }
         let result = await businessModel.create(business);
         return result;
     }

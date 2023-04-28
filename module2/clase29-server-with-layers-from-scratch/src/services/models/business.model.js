@@ -1,7 +1,10 @@
 import moongose from 'mongoose';
 
 const schema = new moongose.Schema({
-    name:String,
+    name:{
+        type: String,
+        unique: true
+    },
     products: []
 });
 
