@@ -38,7 +38,7 @@ const mailOptionsWithAttachments = {
             </div>`,
     attachments: [
         {
-            filename: '',
+            filename: 'Meme de Programacion',
             path: __dirname+'/public/images/meme.png',
             cid: 'meme'
         }
