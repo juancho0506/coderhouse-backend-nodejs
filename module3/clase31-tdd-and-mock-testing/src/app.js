@@ -24,35 +24,85 @@ app.listen(SERVER_PORT, () => {
         let testPasados = 0;
         const testTotales = 4;
         //Test 1: La función debe devolver null si algun parametro no es numérico.
-        console.log("Test 1: La función debe devolver null si algun parametro no es numérico.");
-        let resultTest1 = suma("2", 2);
-        if (resultTest1 === null) {
-            console.log("Test 1: pasado!");
-            testPasados++;
-        } else console.error(`Test 1: No pasado, se recibió ${typeof resultTest1}, pero se esperaba null.`);
-
+        testPasados = escenario1(testPasados);
         //Test 2: La funcion debe devolver 0 si no se pasa ningún parámetro:
-        console.log("Test 2: La funcion debe devolver 0 si no se pasa ningún parámetro:");
-        let resultTest2 = suma();
-        if (resultTest2 === 0) {
-            console.log("Test 2: pasado!");
-            testPasados++;
-        } else console.error(`Test 2: No pasado, se recibió ${typeof resultTest2}, pero se esperaba valor cero.`);
-
+        testPasados = escenario2(testPasados);
         //Test 3: La función debe poder realizar la suma correctamente.
-        console.log("Test 3: La función debe poder realizar la suma correctamente.");
-        let resultTest3 = suma(2, 3);
-        if (resultTest3 === 5) {
-            console.log("Test 3: pasado!");
-            testPasados++;
-        } else console.error(`Test 3: No pasado, se recibió ${typeof resultTest3}, pero se esperaba valor 5.`);
+        testPasados = escenario3(testPasados);
+        //Test 4: La función debe poder realizar la suma con cualquier cantidad de numeros.
+        testPasados = escenario4(testPasados);
 
-        //Test 4: La función debe poder realizar la suma con cantidad de numeros.
-        console.log("Test 4: La función debe poder realizar la suma con cualquier cantidad de numeros");
-        let resultTest4 = suma(1, 2, 3, 4, 5);
-        if (resultTest4 === 15) {
-            console.log("Test 4: pasado!");
-            testPasados++;
-        } else console.error(`Test 4: No pasado, se recibió ${typeof resultTest4}, pero se esperaba valor 15.`);
+        ///////////
+        console.log(`Test ejecutados: ${testTotales}, pasaron: ${testPasados}`);
     }
 });
+
+const escenario1 = (testPasados)=> {
+    console.log("Test 1: La función debe devolver null si algun parametro no es numérico.");
+    //Given lo dado o lo que tengo para el escenario
+    const numero1 = "2";
+    const numero2 = 2;
+
+    //Then o entonces o ejecuto.
+    let result = suma(numero1, numero2);
+
+    //Assert o Validar
+    if (result === null) {
+        console.log("Test 1: pasado!");
+        testPasados++;
+    } else console.error(`Test 1: No pasado, se recibió ${typeof result}, pero se esperaba null.`);
+    return testPasados;
+};
+
+const escenario2 = (testPasados) => {
+    console.log("Test 2: La funcion debe devolver 0 si no se pasa ningún parámetro:");
+    //Given
+
+    //Then
+    let result = suma();
+    //Assert
+    if (result === 0) {
+        console.log("Test 2: Pasado!");
+        testPasados++;
+    } else {
+        console.error(`Test 2: No pasado, se recibió ${result}, pero se esperaba 0.`);
+    }
+    return testPasados;
+}
+
+const escenario3 = (testPasados) => {
+    console.log("Test 3: La función debe poder realizar la suma correctamente.");
+    //Given
+    const numero1 = 3;
+    const numero2 = 2;
+
+    //Then
+    let result = suma(numero1, numero2);
+    //Assert
+    const expected = 5;
+    if (result === expected) {
+        console.log("Test 3: Pasado!");
+        testPasados++;
+    } else {
+        console.error(`Test 3: No pasado, se recibió ${result}, pero se esperaba ${expected}.`);
+    }
+    return testPasados;
+}
+
+const escenario4 = (testPasados) => {
+    console.log("Test 4: La función debe poder realizar la suma con cualquier cantidad de numeros");
+    //Given
+   const numerosEntrada = [1, 2, 3, 4, 5];
+
+    //Then
+    let result = suma(...numerosEntrada);
+    //Assert
+    const expected = 15;
+    if (result === expected) {
+        console.log("Test 4: Pasado!");
+        testPasados++;
+    } else {
+        console.error(`Test 4: No pasado, se recibió ${result}, pero se esperaba ${expected}.`);
+    }
+    return testPasados;
+}
