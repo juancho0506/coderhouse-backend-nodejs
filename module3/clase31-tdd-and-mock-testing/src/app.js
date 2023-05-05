@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 //Declare routers:
-app.use("/api/user", usersRouter);
+app.use("/api/users", usersRouter);
 
 const SERVER_PORT = config.port;
 app.listen(SERVER_PORT, () => {

@@ -17,7 +17,7 @@ export const generateUser = () => {
         name: faker.name.firstName(),
         last_name: faker.name.lastName(),
         sex: faker.name.sex(),
-        birthDate: faker.date.birthdate,
+        birthDate: faker.date.birthdate(),
         products,
         image: faker.internet.avatar(),
         id: faker.database.mongodbObjectId(),

@@ -1,6 +1,6 @@
 import {generateUser} from '../utils.js'
 
-export const getUser = async (req, res) => {
+export const getUsers = async (req, res) => {
     try {
         let users = [];
         for (let i = 0; i < 100; i++) {
