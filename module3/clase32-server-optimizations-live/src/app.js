@@ -6,7 +6,6 @@ import usersRouter from './routers/users.router.js'
 
 //Other imports...
 import compression from 'express-compression';
-import errorHandler from './services/errors/middlewares/index.js';
 
 const app = express();
 
@@ -17,8 +16,6 @@ app.use(express.urlencoded({extended:true}));
 app.use(compression({
     brotli: {enabled: true, zlib: {}}
 }));
-
-app.use(errorHandler);
 
 //Declare routers:
 app.use("/compression", compressionRouter);

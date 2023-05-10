@@ -15,12 +15,11 @@ export const getUsers = (req, res) => {
 }
 
 export const saveUser = (req, res) => {
-    try {
+    //try {
         console.log(req.body);
         const {first_name, last_name, age, email} = req.body;
         if (!first_name || !email) {
             //Create Custom Error
-            console.error();
             CustomError.createError({
                 name: "User Creation Error",
                 cause: generateUserErrorInfo({first_name, last_name, age, email}),
@@ -42,8 +41,8 @@ export const saveUser = (req, res) => {
         }
         users.push(userDto);
         res.status(201).send({status: "success", payload: userDto});
-    } catch (error) {
+    /*} catch (error) {
         console.error(error);
-        res.status(500).send({error:  error, message: "No se pudo guardar el usuario."});
-    }
+        res.status(500).send({error:  error.code, message: error.message});
+    }*/
 }
