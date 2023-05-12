@@ -1,0 +1,20 @@
+{
+  "name": "clase33-publicar-modulo-npm",
+  "version": "1.0.1",
+  "description": "Mi primer paquete de NPM",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "clase33-test-npm-sum-module": "^1.0.0",
+    "commander": "^10.0.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-compression": "^1.0.2"
+  }
+}
