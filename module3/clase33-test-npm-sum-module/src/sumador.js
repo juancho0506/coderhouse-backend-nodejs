@@ -1,5 +1,5 @@
 //Suma Refactored and optimized with Functional Programming.
-export default (...numbers) => {
+const sumador = (...numbers) => {
     console.log("Entrando a la suma con arreglo de numeros: ");
     console.log(numbers);
     if (numbers.length === 0) return 0;
@@ -10,3 +10,4 @@ export default (...numbers) => {
     console.log(result);
     return result;
 };
+export default sumador;
