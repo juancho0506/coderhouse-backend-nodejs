@@ -3,6 +3,6 @@ import { fakeUser } from "../controllers/users.controller.js";
 
 const router = Router();
 
-router.get("/test/user", fakeUser);
+router.get("/test", fakeUser);
 
 export default router;
