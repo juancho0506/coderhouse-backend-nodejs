@@ -22,6 +22,7 @@ app.use("/api/session", sessionRouter);
 app.use("/api/user", userRouter);
 
 app.get("/logger", (req, res)=>{
+    req.logger.warning("Prueba de log level warning!");
     res.send("Prueba de logger!");
 });
 
