@@ -12,6 +12,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(addLogger);
 
+app.get("/", (req, res) => {
+    res.send("Hola Docker!");
+});
 
 //Declare routers:
 app.use("/api/performance", performanceRouter);
