@@ -59,6 +59,7 @@ export const addLogger = (req, res, next) => {
     } else {
         req.logger = devLogger;
     }
-    req.logger.info(`${req.method} en ${req.url} - at ${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`);
+    req.logger.info(`${req.method} en ${req.url} - worker: ${process.pid} 
+        - at ${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`);
     next();
 };
