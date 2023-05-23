@@ -31,4 +31,4 @@ const mongoInstance = async () => {
         process.exit();
     }
 };
-mongoInstance();
+//mongoInstance();

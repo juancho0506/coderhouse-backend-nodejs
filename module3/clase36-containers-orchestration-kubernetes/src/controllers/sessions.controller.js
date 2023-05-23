@@ -1,10 +1,13 @@
 import UserServiceDao from '../services/dao/users.dao.js';
 import {createHash, isValidPassword} from '../utils.js';
 
-const userServiceDao = new UserServiceDao();
+//const userServiceDao = new UserServiceDao();
 
 export const loginUser = async (req, res) => {
-    const {email, password} = req.body;
+    //TODO: This is temporally until connect DB
+    res.status(503).send({error: "unavailable", message: "Service unavailable temporally"});
+
+    /*const {email, password} = req.body;
     try {
         const user = await userServiceDao.findByUsername(email);
         console.log("Usuario encontrado para login:");
@@ -22,7 +25,7 @@ export const loginUser = async (req, res) => {
             email: user.email,
             age: user.age,
             role: user.role
-        };
+        };*/
         //const access_token = generateJWToken(tokenUser); //No tokens for now.
         //console.log(access_token);
         //Con Cookie
@@ -30,15 +33,18 @@ export const loginUser = async (req, res) => {
             maxAge: 60000,
             httpOnly: true
         });*/
-        res.send({message: "Login successful!", payload: tokenUser});
+    /*    res.send({message: "Login successful!", payload: tokenUser});
     } catch (error) {
         console.error(error);
         return res.status(500).send({status:"error",error:"Error interno de la applicacion."});
-    }
+    }*/
 };
 
 export const registerUser = async (req, res) => {
-    const { first_name, last_name, email, age, password} = req.body;
+    //TODO: This is temporally until connect DB
+    res.status(503).send({error: "unavailable", message: "Service unavailable temporally"});
+    
+    /*const { first_name, last_name, email, age, password} = req.body;
     console.log("Registrando usuario:");
     console.log(req.body);
 
@@ -54,5 +60,5 @@ export const registerUser = async (req, res) => {
         password: createHash(password)
     };
     const result = await userServiceDao.save(user);
-    res.status(201).send({status: "success", message: "Usuario creado con extito con ID: " + result.id});
+    res.status(201).send({status: "success", message: "Usuario creado con extito con ID: " + result.id});*/
 };
