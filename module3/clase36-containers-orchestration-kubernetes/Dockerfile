@@ -8,7 +8,6 @@ WORKDIR /app
 COPY package*.json ./
 
 #Ejecutamos el comando npm install para generar las dependencias.
-RUN npm install bcrypt
 RUN npm install
 
 #Procedemos a copiar todo el código del aplicativo.
