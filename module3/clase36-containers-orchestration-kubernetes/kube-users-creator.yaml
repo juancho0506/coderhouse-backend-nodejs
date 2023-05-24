@@ -6,7 +6,7 @@ spec:
   selector:
     app: clase36-users-creator
   ports:
-    - port: 80
+    - port: 8080
       targetPort: 9090
   type: LoadBalancer
 ---
