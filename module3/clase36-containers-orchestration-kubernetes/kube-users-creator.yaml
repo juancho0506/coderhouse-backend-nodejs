@@ -34,6 +34,7 @@ spec:
         ports:
           - containerPort: 9090
         env:
+          #TODO: Create a kubernetes manifiest for MongoDB to deploy properly 
           - name: MONGO_URL
             value: mongodb://172.17.0.2:27017/clase36-containers-docker-kubernetes?retryWrites=true&w=majority
         imagePullPolicy: Always
