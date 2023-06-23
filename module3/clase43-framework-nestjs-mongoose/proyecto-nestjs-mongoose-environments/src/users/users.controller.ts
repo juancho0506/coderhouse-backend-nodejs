@@ -2,11 +2,11 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, HttpS
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { throws } from 'assert';
+import {ConfigService} from '@nestjs/config';
 
-@Controller('api/users')
+@Controller('/api/users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: UsersService, private config: ConfigService) {}
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
@@ -15,8 +15,9 @@ export class UsersController {
   }
 
   @Get()
-  findAll() {
-    const users =  this.usersService.findAll();
+  async findAll() {
+    console.log(`Quiero PAPA con ${this.config.get<string>('PAPA')}`);
+    const users =  await this.usersService.findAll();
     return {status: "success", payload: users};
   }
 
