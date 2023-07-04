@@ -21,6 +21,7 @@ dotenv.config({
 
 export default {
     port: process.env.PORT,
+    stripeSecretKey: process.env.STRIPE_APP_SECRET_KEY,
     adminName: process.env.ADMIN_NAME,
     adminPassword: process.env.ADMIN_PASSWORD,
     runTests: program.opts().test
