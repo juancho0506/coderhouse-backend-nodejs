@@ -18,7 +18,11 @@ router.post("/payment-intents", async (req, res) => {
         if (!productRequested) return res.status(404).send({status: "error", error: "Product not found."});
         const paymentIntentInfo = {
             amount: productRequested.price,
-            currency: 'usd'
+            currency: 'usd',
+            metadata: {
+                userId: 'test user',
+                producto: JSON.stringify(productRequested)
+            }
         };
         const service = new PaymentService();
         let result = await service.createPaymentIntent(paymentIntentInfo);
