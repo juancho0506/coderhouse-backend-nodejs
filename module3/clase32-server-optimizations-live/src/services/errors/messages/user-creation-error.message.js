@@ -5,3 +5,10 @@ export const generateUserErrorInfo = (user) => {
             * email: type String, recibido: ${user.email}
     `;
 };
+
+export const getUserByIdErrorInfo = (userId) => {
+    return `Una o mas propiedades fueron enviadas de manera incompleta o non validas.
+            Lista de propiedades requeridas:
+                * userId: type String, recibido: ${userId}
+    `;
+}

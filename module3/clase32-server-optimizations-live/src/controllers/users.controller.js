@@ -1,6 +1,6 @@
 import CustomError from "../services/errors/CustomError.js";
 import EErrors from "../services/errors/errors-enum.js";
-import { generateUserErrorInfo } from "../services/errors/messages/user-creation-error.message.js";
+import { generateUserErrorInfo, getUserByIdErrorInfo } from "../services/errors/messages/user-creation-error.message.js";
 
 const users = [];
 
@@ -45,4 +45,20 @@ export const saveUser = (req, res) => {
         console.error(error);
         res.status(500).send({error:  error.code, message: error.message});
     }*/
+}
+
+export const getUserById = (req, res) => {
+    console.log(`Entrando a get user by id, buscando por id: ${req.params.uid}`);
+    console.log(parseInt(req.params.uid));
+    if(!req.params.uid || isNaN(parseInt(req.params.uid))){
+        console.log("Generando error custom");
+        //Create Custom Error
+        CustomError.createError({
+            name: "User Get By Id Error",
+            cause: getUserByIdErrorInfo(req.params.uid),
+            message: "Error tratando de obtener el usuario",
+            code: EErrors.INVALID_PARAM
+        });
+    }
+    res.send({message: "Success!", payload: users});
 }

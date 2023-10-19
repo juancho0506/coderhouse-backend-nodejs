@@ -13,6 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
+//Compression
 app.use(compression({
     brotli: {enabled: true, zlib: {}}
 }));
