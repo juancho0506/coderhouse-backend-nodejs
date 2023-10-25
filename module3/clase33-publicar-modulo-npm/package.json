@@ -11,7 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "clase33-test-npm-sum-module": "^1.0.0",
     "commander": "^10.0.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",

@@ -1,3 +1,4 @@
+import sumador from 'clase33-test-npm-sum-module';
 const users = [];
 
 export const getUsers = (req, res) => {
@@ -35,4 +36,15 @@ export const saveUser = (req, res) => {
         console.error(error);
         res.status(500).send({error:  error.code, message: error.message});
     }*/
+}
+
+export const suma = (req, res) => {
+    try {
+        console.log(sumador);
+        res.send({message: "Success!", payload: "To be implemented"});
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({error:  error, message: "No se pudo obtener los usuarios."});
+    }
+    
 }
