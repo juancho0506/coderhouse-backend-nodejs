@@ -17,10 +17,16 @@ if (cluster.isPrimary) {
     for (let i = 0; i < numeroProcesadores-1; i++) {
         cluster.fork();      
     }
+    cluster.on('message', worker => {
+        console.log(`Mensaje recibido desde el worker: ${worker.process.pid}`);
+    });
+    cluster.on('disconnect', worker => {
+        cluster.fork();
+    })
 } else {
     console.log("Este es un proceso Fork! Soy un worker!!");
     console.log(`Soy un proceso worker con el id: ${process.pid}`);
-
+    process.send("Hola primary!");
     const app = express();
 
     //JSON settings:
