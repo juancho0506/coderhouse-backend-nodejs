@@ -15,21 +15,22 @@ const connection = mongoose.connect(`mongodb://localhost:27017/clase39-adoptme?r
 
 const swaggerOptions = {
     definition: {
-        openapi: "3.0.1",
+        openapi: '3.0.1',
         info: {
             title: "Documentacion API Adoptme",
-            description: "Documentacion para uso de swagger"
+            description: "Documentacion del uso de las apis relacionadas."
         }
     },
     apis: [`./src/docs/**/*.yaml`]
 };
+
 const specs = swaggerJSDoc(swaggerOptions);
-//Declare swagger api endpoint 
-app.use('/apidocs', swaggerUIExpress.serve, swaggerUIExpress.setup(specs));
 
 app.use(express.json());
 app.use(cookieParser());
 
+//Declare swagger Api endpoint
+app.use('/apidocs', swaggerUIExpress.serve, swaggerUIExpress.setup(specs));
 app.use('/api/users',usersRouter);
 app.use('/api/pets',petsRouter);
 app.use('/api/adoptions',adoptionsRouter);

@@ -1,22 +1,43 @@
 paths:
   /api/users/:
     get:
-      summary: Obtiene todos los usuarios disponibles en la aplicación.
-      tags: 
+      summary: Obtiene todos los datos disponibles de los usuarios en la aplicación
+      tags:
         - Users
       responses:
         "200":
-          description: La operacion fue exitosa! Se retorna un arreglego con los usuarios.
+          description: La operación fue exitosa! Retorna un arreglo de usuarios.
           content:
             application/json:
-              schema: 
+              schema:
                 type: array
                 items: 
                   $ref: '#components/schemas/User'
-        "400": 
-          description: Se envió un dato no esperado.
         "500":
-          description: Error inesperado en el servidor, no se pudo manejar el proceso.
+          description: Ocurrio un error interno no esperado.
+  /api/users/:uid:
+    get:
+      summary: Obtiene la información de un usuario en la aplicación dada la id del mismo.
+      tags:
+        - Users
+      parameters:
+        - name: uid 
+          in: path
+          required: true
+          description: La id del usuario en BD.
+          schema:
+            $type: string
+            example: 647fa8c9e46dbc5a20320181
+            
+      responses:
+        "200":
+          description: La operación fue exitosa! Retorna un objeto de tipo usuario.
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/User'
+        "500":
+          description: Ocurrio un error interno no esperado.
 components:
   schemas:
     User: 
