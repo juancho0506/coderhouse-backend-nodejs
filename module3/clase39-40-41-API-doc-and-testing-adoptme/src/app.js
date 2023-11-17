@@ -8,10 +8,12 @@ import adoptionsRouter from './routes/adoption.router.js';
 import sessionsRouter from './routes/sessions.router.js';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUIExpress from 'swagger-ui-express';
+import config from './config/config.js';
 
 const app = express();
 const PORT = process.env.PORT||9090;
-const connection = mongoose.connect(`mongodb://localhost:27017/clase39-adoptme?retryWrites=true&w=majority`)
+console.log("Connecting to MongoURL: " + config.mongoUrl);
+const connection = mongoose.connect(config.mongoUrl)
 
 const swaggerOptions = {
     definition: {
